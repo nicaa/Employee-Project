@@ -1,0 +1,23 @@
+﻿
+@using EmployeeProject.Models
+@model IEnumerable<Department>
+@{
+    ViewBag.Title = "Departments";
+}
+
+<h2>Departments</h2>
+
+<div>
+    
+        <ul>
+            @foreach (Department department in Model)
+            {
+                <li>
+                    @Html.ActionLink(department.DepartmentName, "Index", "Employee", new { departmentId = department.DepartmentID}, null)
+                </li>
+            }
+        </ul>
+    @Html.ActionLink("Create new department", "Create") <br/>
+    @Html.ActionLink("Manage departments", "Manage")<br/>
+    @Html.ActionLink("Manage Employees", "Manage", "Employee")
+</div>

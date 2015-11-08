@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EmployeeProject.Models.Department>
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Manage</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentID }) |
+            @using (Html.BeginForm("Delete", "Department", new { id = item.DepartmentID }))
+            {
+                <input type="submit" value="Delete"
+                       onclick="return confirm('Are you sure you want to delete @item.DepartmentName from the database');" />
+            }
+
+
+        </td>
+
+    </tr>
+
+}
+
+</table>

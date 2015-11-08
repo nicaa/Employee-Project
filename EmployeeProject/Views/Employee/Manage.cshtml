@@ -1,0 +1,75 @@
+﻿@model IEnumerable<EmployeeProject.Models.Employee>
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Manage</h2>
+<p>
+    @using (Html.BeginForm("Manage","Employee" , FormMethod.Get))
+    {
+        <b>Search by: </b> @Html.RadioButton("searchBy", "Name", true) <text>Name</text>
+        @Html.RadioButton("searchBy", "Department") <text>Department ID</text><br />
+        @Html.TextBox("search") <input type="submit" value="Search" />
+        
+    }
+
+   
+</p>
+<p>
+    <!-- The null value is because we are using a overloadet method that needs a  object route value, and we do now have to pass one here.--->
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.departmentID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departmentID)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }, new { @class = "btn btn-primary" })
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "Employee", new { id = item.EmployeeID }))
+                {
+                    <input class="btn btn-primary" type="submit" value="Delete"
+                           onclick="return confirm('Are you sure you want to delete @item.fName from the database');" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>

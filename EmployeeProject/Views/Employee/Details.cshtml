@@ -1,0 +1,52 @@
+﻿@model EmployeeProject.Models.Employee
+
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+
+<table style="border-style: solid">
+    <tr>
+        <td>
+            <b>Employee id</b>
+        </td>
+        <td>
+            @Model.EmployeeID
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Employee fName</b>
+        </td>
+        <td>
+            @Model.fName
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Employee lName</b>
+        </td>
+        <td>
+            @Model.lName
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Employee Gender</b>
+        </td>
+        <td>
+            @Model.gender
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Employee Salary</b>
+        </td>
+        <td>
+            @Model.salary
+        </td>
+    </tr>
+    
+</table>
+@Html.ActionLink("Back to list", "Index", new {departmentId = @Model.departmentID })
